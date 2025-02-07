@@ -16,8 +16,6 @@ struct Item
 
 void addItem(struct Item items[], int *count, long int *total);
 void displayBill(struct Item items[], int count, long int total, int extraDiscount);
-void sortItems(struct Item items[], int count);
-
 int main() 
 {
     struct Item items[MAX_ITEMS];
@@ -101,8 +99,6 @@ void displayBill(struct Item items[], int count, long int total, int extraDiscou
         return;
     }
 
-    sortItems(items, count);
-
     printf("\n--------------------------------------BILL--------------------------------------\n");
     printf("Sl. Name                                   Quantity    Price    Discount    Bill\n");
     for (int i = 0; i < count; i++) 
@@ -114,21 +110,5 @@ void displayBill(struct Item items[], int count, long int total, int extraDiscou
 
     printf("\nExtra Discount: %d\n", extraDiscount);
     printf("Final Total: %ld\n", total - extraDiscount);
-}
-
-
-void sortItems(struct Item items[], int count) 
-{
-    struct Item temp;
-    for (int i = 0; i < count - 1; i++) {
-        for (int j = i + 1; j < count; j++) {
-            if (strcmp(items[i].name, items[j].name) > 0) 
-            {
-                temp = items[i];
-                items[i] = items[j];
-                items[j] = temp;
-            }
-        }
-    }
 }
 
